@@ -55,3 +55,16 @@ export const addACard = (cardName) => async (dispatch) => {
   }
 }
 
+const cardReducer = (state = {}, action) => {
+  let newState;
+  switch (action.type) {
+    case ADD_CARD:
+      newState = {...state, ...action.payload}
+      return newState
+    default:
+      return state
+  }
+}
+
+export default cardReducer;
+
