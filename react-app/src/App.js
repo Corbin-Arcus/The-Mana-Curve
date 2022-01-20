@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import CreateCardPage from './components/CreateCardPage'
+import CardByIdPage from './components/CardByIdPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,8 +36,11 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/' exact={true}>
+        <Route path='/cards/find' exact={true}>
           <CreateCardPage />
+        </Route>
+        <Route path='/cards/:id' exact={true}>
+          <CardByIdPage />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

@@ -5,27 +5,27 @@ class Card(db.Model):
 
   id = db.Column(db.Integer, primary_key=True, nullable=False)
 
-  card_name = db.Column(db.String(100), nullable=False, unique=True)
+  card_name = db.Column(db.String(500), nullable=False, unique=True)
 
-  card_image = db.Column(db.String(255), nullable=False)
+  card_image = db.Column(db.String(500), nullable=False)
 
-  mana_cost = db.Column(db.String(100), nullable=False, unique=True)
+  mana_cost = db.Column(db.String(500), nullable=False, unique=True)
 
   cmc = db.Column(db.Integer, nullable=False)
 
-  type_line = db.Column(db.String(100), nullable=False)
+  type_line = db.Column(db.String(500), nullable=False)
 
-  oracle_text = db.Column(db.String(100), nullable=False, unique=True)
+  oracle_text = db.Column(db.String(500), nullable=False, unique=True)
 
-  power = db.Column(db.Integer)
+  power = db.Column(db.Integer, nullable=True)
 
-  toughness = db.Column(db.Integer)
+  toughness = db.Column(db.Integer, nullable=True)
 
-  colors = db.Column(db.String(100), nullable=False)
+  colors = db.Column(db.String(500), nullable=False)
 
-  color_identity = db.Column(db.String(100), nullable=False)
+  color_identity = db.Column(db.String(500), nullable=False)
 
-  legalities = db.Column(db.String(256), nullable=False)
+  legalities = db.Column(db.String(500), nullable=False)
 
   def to_dict(self):
             return {

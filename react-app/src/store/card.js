@@ -1,4 +1,5 @@
 const ADD_CARD = 'card/ADD_CARD'
+const GET_CARD = 'card/GET_CARD'
 
 const addCard = (card) => {
   return{
@@ -7,6 +8,18 @@ const addCard = (card) => {
   }
 }
 
+const getCard = (card) => {
+  return{
+    type: GET_CARD,
+    payload: card
+  }
+}
+
+export const getOneCard = (id) => async (dispatch) => {
+  const res = await fetch(`/api/cards/${id}`)
+  const data = await res.json()
+  dispatch(getCard(data.card))
+}
 
 export const addACard = (cardName) => async (dispatch) => {
   const card = await fetch(`https://api.scryfall.com/cards/named?fuzzy=${cardName}`)
@@ -22,11 +35,13 @@ export const addACard = (cardName) => async (dispatch) => {
   const cmc = data.cmc
   const type_line = data.type_line
   const oracle_text = data.oracle_text
-  const power = parseInt(data.power)
-  const toughness = parseInt(data.toughness)
-  const colors = data.colors
-  const color_identity = data.color_identity
+  const power = data.power
+  const toughness = data.toughness
+  const colors = `${data.colors}`
+  const color_identity = `${data.color_identity}`
   const legalities = data.legalities
+  const usableLegalities = JSON.stringify(legalities)
+
 
   const res = await fetch('/api/cards/', {
     method: 'POST',
@@ -44,14 +59,22 @@ export const addACard = (cardName) => async (dispatch) => {
       toughness,
       colors,
       color_identity,
-      legalities
+      legalities: usableLegalities
     })
   })
 
   if (res.ok) {
     const data = await res.json()
     dispatch(addCard(data))
+    window.alert('Card successfully added!')
     return data
+  }
+  else if (res.status < 500) {
+    const data = await res.json()
+    if (data.errors) return data.errors
+  }
+  else {
+    return ['An error occurred. Please try again']
   }
 }
 
@@ -59,6 +82,9 @@ const cardReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case ADD_CARD:
+      newState = {...state, ...action.payload}
+      return newState
+    case GET_CARD:
       newState = {...state, ...action.payload}
       return newState
     default:

@@ -33,7 +33,7 @@ function CreateCardPage() {
       history.push('/')
       return dispatch(cardActions.addACard(cardName))
         .catch(async (res) => {
-          const data = await res.json();
+          const data = await res;
           if (data && data.errors.length > 0) setErrors(data.errors)
         })
     }
