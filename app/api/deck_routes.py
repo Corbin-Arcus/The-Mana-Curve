@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required
-from app.models import Deck, db, deck_card
+from app.models import Deck, db, deck_card, Card
 from app.forms.create_deck_form import CreateDeckForm
 
 deck_routes = Blueprint('decks', __name__ )
@@ -29,3 +29,21 @@ def create_deck():
     return new_deck.to_dict()
 
   return{'message': 'There was an error'}
+
+@deck_routes.route('/<int:id>')
+def deck_by_id(id):
+  deck = Deck.query.get_or_404(id)
+
+  return{'deck': [deck.to_dict()]}
+
+@deck_routes.route('/<int:deckId>/add/<int:cardId>', methods=['POST'])
+def addCard(cardId, deckId):
+  card = Card.query.get_or_404(cardId)
+
+  deck = Deck.query.get_or_404(deckId)
+
+  deck.add_card(card)
+
+  return deck.to_dict()
+
+

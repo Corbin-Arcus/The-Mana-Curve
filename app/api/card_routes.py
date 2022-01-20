@@ -15,8 +15,8 @@ def cards():
 def create_card():
   form = CreateCardForm()
   # data = request.json
-  print(form.data)
   form['csrf_token'].data = request.cookies['csrf_token']
+  
   if form.validate_on_submit():
     card_name = form.data['card_name']
     card_image = form.data['card_image']

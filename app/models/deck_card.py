@@ -1,6 +1,6 @@
 from .db import db
 
-deck_card = db.Table(
+deck_cards = db.Table(
   'deck_cards',
   db.Column(
     'card_id',
@@ -16,7 +16,7 @@ deck_card = db.Table(
   )
 )
 
-class Deck_Card(object):
+class Deck_Cards(object):
   def __init__(self, card_id, deck_id):
     self.card_id = card_id
     self.deck_id = deck_id
@@ -27,5 +27,5 @@ class Deck_Card(object):
             'deck_id': self.deck_id,
         }
 
-db.mapper(Deck_Card, deck_card)
+db.mapper(Deck_Cards, deck_cards)
 

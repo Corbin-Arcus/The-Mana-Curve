@@ -1,4 +1,5 @@
 from .db import db
+from .deck_card import deck_cards, Deck_Cards
 
 class Deck(db.Model):
   __tablename__ = 'decks'
@@ -11,17 +12,22 @@ class Deck(db.Model):
 
   deck_format = db.Column(db.String(100), nullable=False, unique=True)
 
-  created_at = db.Column(db.DateTime(timezone=True))
+  cards = db.relationship(
+    'Card',
+    secondary=deck_cards,
+    back_populates='decks'
+  )
 
-  updated_at = db.Column(db.DateTime(timezone=True))
+  def add_card(self, card):
+    self.cards.append(card)
+    db.session.commit()
+    return self
 
-  user = db.relationship('User', back_populates='decks')
 
   def to_dict(self):
             return {
                 'id': self.id,
                 'deck_name': self.deck_name,
                 'deck_format': self.deck_format,
-                'created_at': self.created_at,
-                'updated_at': self.updated_at
+                'cards': [card.to_dict() for card in self.cards]
             }

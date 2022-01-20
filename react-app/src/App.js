@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import CreateCardPage from './components/CreateCardPage'
 import CardByIdPage from './components/CardByIdPage';
 import CreateDeckPage from './components/CreateDeckPage';
+import DeckByIdPage from './components/DeckByIdPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,11 +38,15 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/cards/find' exact={true}>
+        {/* <Route path='/cards/find' exact={true}>
           <CreateCardPage />
-        </Route>
+        </Route> */}
         <Route path='/cards/:id' exact={true}>
           <CardByIdPage />
+        </Route>
+        <Route path='/decks/:id' exact={true}>
+          <CreateCardPage />
+          <DeckByIdPage />
         </Route>
         <Route path='/decks/new' exact={true}>
           <CreateDeckPage />

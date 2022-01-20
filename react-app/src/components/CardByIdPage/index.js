@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as cardActions from '../../store/card'
-import { useParams } from 'react-router-dom'
+import { Link, useParams, NavLink } from 'react-router-dom'
 
 function CardByIdPage() {
   const dispatch = useDispatch()

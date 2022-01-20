@@ -1,4 +1,5 @@
 from .db import db
+from .deck_card import deck_cards, Deck_Cards
 
 class Card(db.Model):
   __tablename__ = 'cards'
@@ -9,9 +10,9 @@ class Card(db.Model):
 
   card_image = db.Column(db.String(500), nullable=False)
 
-  mana_cost = db.Column(db.String(500), nullable=False, unique=True)
+  mana_cost = db.Column(db.String(500), nullable=True)
 
-  cmc = db.Column(db.Integer, nullable=False)
+  cmc = db.Column(db.Integer, nullable=True)
 
   type_line = db.Column(db.String(500), nullable=False)
 
@@ -21,11 +22,17 @@ class Card(db.Model):
 
   toughness = db.Column(db.Integer, nullable=True)
 
-  colors = db.Column(db.String(500), nullable=False)
+  colors = db.Column(db.String(500), nullable=True)
 
-  color_identity = db.Column(db.String(500), nullable=False)
+  color_identity = db.Column(db.String(500), nullable=True)
 
   legalities = db.Column(db.String(500), nullable=False)
+
+  decks = db.relationship(
+    'Deck',
+    secondary=deck_cards,
+    back_populates='cards'
+  )
 
   def to_dict(self):
             return {
@@ -40,5 +47,5 @@ class Card(db.Model):
                 'toughness': self.toughness,
                 'colors': self.colors,
                 'color_identity': self.color_identity,
-                'legalities': self.legalities,
+                'legalities': self.legalities
             }
