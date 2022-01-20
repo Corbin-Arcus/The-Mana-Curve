@@ -5,6 +5,8 @@ class Deck(db.Model):
 
   id = db.Column(db.Integer, primary_key=True, nullable=False)
 
+  user_id = db.Column(db.Integer,  db.ForeignKey('users.id'), nullable=False)
+
   deck_name = db.Column(db.String(100), nullable=False, unique=True)
 
   deck_format = db.Column(db.String(100), nullable=False, unique=True)
@@ -12,6 +14,8 @@ class Deck(db.Model):
   created_at = db.Column(db.DateTime(timezone=True))
 
   updated_at = db.Column(db.DateTime(timezone=True))
+
+  user = db.relationship('User', back_populates='decks')
 
   def to_dict(self):
             return {

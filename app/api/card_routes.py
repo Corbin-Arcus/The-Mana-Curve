@@ -1,4 +1,3 @@
-import re
 from app.forms.create_card_form import CreateCardForm
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required

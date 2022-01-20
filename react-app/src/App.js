@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import CreateCardPage from './components/CreateCardPage'
 import CardByIdPage from './components/CardByIdPage';
+import CreateDeckPage from './components/CreateDeckPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,6 +43,9 @@ function App() {
         <Route path='/cards/:id' exact={true}>
           <CardByIdPage />
         </Route>
+        <Route path='/decks/new' exact={true}>
+          <CreateDeckPage />
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
@@ -57,3 +61,4 @@ function App() {
 }
 
 export default App;
+
