@@ -21,11 +21,11 @@ function CreateCardPage() {
        const data = await dispatch(cardActions.addACard(cardName))
     }
   }
-  // useEffect(async () => {
-  //   const cardId = card?.id
-  //   const deckId = deck[0]?.id
-  //   const data2 = await dispatch(deckActions.addACard({cardId, deckId}))
-  // },[card])
+  useEffect(async () => {
+    const cardId = card?.id
+    const deckId = deck[0]?.id
+    const data2 = await dispatch(deckActions.addACard({cardId, deckId}))
+  },[card])
 
 
   return(

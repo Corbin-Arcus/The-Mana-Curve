@@ -10,7 +10,7 @@ class Deck(db.Model):
 
   deck_name = db.Column(db.String(100), nullable=False, unique=True)
 
-  deck_format = db.Column(db.String(100), nullable=False, unique=True)
+  deck_format = db.Column(db.String(100), nullable=False)
 
   cards = db.relationship(
     'Card',
