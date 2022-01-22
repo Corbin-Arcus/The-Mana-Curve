@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from flask_login import login_required
 from app.models import Deck, db, deck_card, Card
 from app.forms.create_deck_form import CreateDeckForm
+from app.forms.update_deck_form import UpdateDeckForm
 
 deck_routes = Blueprint('decks', __name__ )
 
@@ -46,4 +47,25 @@ def addCard(cardId, deckId):
 
   return deck.to_dict()
 
+@deck_routes.route('/<int:id>/', methods=['DELETE'])
+def deleteDeck(id):
+  deck = Deck.query.get_or_404(id)
+
+  db.session.delete(deck)
+
+  db.session.commit()
+
+@deck_routes.route('/<int:id>', methods=['PUT'])
+def updateDeck(id):
+  data = request.json
+
+  deck = Deck.query.get_or_404(id)
+
+  form = UpdateDeckForm()
+
+  deck.deck_name = data['deck_name']
+
+  db.session.commit()
+
+  return deck.to_dict()
 

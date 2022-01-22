@@ -16,7 +16,7 @@ class Card(db.Model):
 
   type_line = db.Column(db.String(500), nullable=False)
 
-  oracle_text = db.Column(db.String(500), nullable=False, unique=True)
+  oracle_text = db.Column(db.String(500), nullable=False)
 
   power = db.Column(db.Integer, nullable=True)
 

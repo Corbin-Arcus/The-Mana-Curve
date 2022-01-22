@@ -12,6 +12,7 @@ import CreateCardPage from './components/CreateCardPage'
 import CardByIdPage from './components/CardByIdPage';
 import CreateDeckPage from './components/CreateDeckPage';
 import DeckByIdPage from './components/DeckByIdPage';
+import UpdateDeckPage from './components/UpdateDeckPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,15 +42,18 @@ function App() {
         {/* <Route path='/cards/find' exact={true}>
           <CreateCardPage />
         </Route> */}
+        <Route path='/decks/:id/edit' exact={true}>
+          <UpdateDeckPage />
+        </Route>
         <Route path='/cards/:id' exact={true}>
           <CardByIdPage />
+        </Route>
+        <Route path='/decks/new' exact={true}>
+          <CreateDeckPage />
         </Route>
         <Route path='/decks/:id' exact={true}>
           <CreateCardPage />
           <DeckByIdPage />
-        </Route>
-        <Route path='/decks/new' exact={true}>
-          <CreateDeckPage />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

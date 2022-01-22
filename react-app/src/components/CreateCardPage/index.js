@@ -11,24 +11,21 @@ function CreateCardPage() {
   const deck = useSelector(state => state.deck)
   const [cardName, setCardName] = useState('')
   const [errors, setErrors] = useState([])
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (cardName.length < 5 || cardName.length > 100) {
+    if (cardName.length > 100) {
       setErrors(['Card name must be between 5 and 100 characters'])
     }
     else {
       setErrors([])
-       dispatch(cardActions.addACard(cardName))
-        .catch(async (res) => {
-          const data = await res;
-          if (data && data.errors.length > 0) setErrors(data.errors)
-        })
-        const cardId = card?.id
-        const deckId = deck[0]?.id
-      return dispatch(deckActions.addACard({cardId, deckId}))
+       const data = await dispatch(cardActions.addACard(cardName))
     }
   }
+  // useEffect(async () => {
+  //   const cardId = card?.id
+  //   const deckId = deck[0]?.id
+  //   const data2 = await dispatch(deckActions.addACard({cardId, deckId}))
+  // },[card])
 
 
   return(

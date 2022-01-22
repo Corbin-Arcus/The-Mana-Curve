@@ -1,6 +1,21 @@
 const CREATE_DECK = 'deck/CREATE_DECK'
 const GET_DECK = 'deck/GET_DECK'
 const ADD_CARD = 'deck/ADD_CARD'
+const DELETE_DECK = 'deck/DELETE_DECK'
+const UPDATE_DECK = 'deck/UPDATE_DECK'
+
+const updateDeck = (deck) => {
+  return{
+    type: UPDATE_DECK,
+    payload: deck
+  }
+}
+
+const deleteDeck = () => {
+  return{
+    type:DELETE_DECK
+  }
+}
 
 const addCard = (deck) => {
   return{
@@ -21,6 +36,37 @@ const createDeck = (deck) => {
     type: CREATE_DECK,
     payload: deck
   }
+}
+
+export const updateOneDeck = (deckId, deck_name ) => async (dispatch) => {
+  const res = await fetch(`/api/decks/${deckId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      deck_name
+    })
+  })
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(updateDeck(data))
+    return data
+  }
+  else if (res.status < 500) {
+    const data = await res.json()
+    if (data.errors) return data.errors
+  }
+  else {
+    return ['An error occurred. Please try again']
+  }
+}
+
+export const deleteADeck = (deckId) => async (dispatch)=> {
+  await fetch(`/api/decks/${deckId}/`, {
+    method: 'DELETE'
+  })
+  dispatch(deleteDeck())
 }
 
 export const addACard = ({cardId, deckId}) => async (dispatch) => {
@@ -95,6 +141,12 @@ const deckReducer = (state = {}, action) => {
       return newState
     case ADD_CARD:
       newState = {...state, ...action.payload}
+      return newState
+    case DELETE_DECK:
+      newState = {...state}
+      return newState
+    case UPDATE_DECK:
+      newState = {...state, ...newState}
       return newState
     default:
       return state
