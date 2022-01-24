@@ -6,10 +6,14 @@ from app.forms.update_deck_form import UpdateDeckForm
 
 deck_routes = Blueprint('decks', __name__ )
 
-@deck_routes.route('/')
-def decks():
+@deck_routes.route('/all/<int:userId>')
+def decks(userId):
   decks = Deck.query.all()
-  return {'decks': [deck.to_dict() for deck in decks]}
+  new_decks = []
+  for deck in decks:
+    if(deck.user_id == userId):
+      new_decks.append(deck)
+  return {'decks': [deck.to_dict() for deck in new_decks]}
 
 
 @deck_routes.route('/', methods=['POST'])
@@ -36,6 +40,16 @@ def deck_by_id(id):
   deck = Deck.query.get_or_404(id)
 
   return{'deck': [deck.to_dict()]}
+
+@deck_routes.route('/<int:deckId>/remove/<int:cardId>', methods=['POST'])
+def removeCard(cardId, deckId):
+  card = Card.query.get_or_404(cardId)
+
+  deck = Deck.query.get_or_404(deckId)
+
+  deck.remove_card(card)
+
+  return deck.to_dict()
 
 @deck_routes.route('/<int:deckId>/add/<int:cardId>', methods=['POST'])
 def addCard(cardId, deckId):

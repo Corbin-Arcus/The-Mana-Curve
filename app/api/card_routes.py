@@ -16,7 +16,8 @@ def create_card():
   form = CreateCardForm()
   # data = request.json
   form['csrf_token'].data = request.cookies['csrf_token']
-  
+
+
   if form.validate_on_submit():
     card_name = form.data['card_name']
     card_image = form.data['card_image']
@@ -29,6 +30,12 @@ def create_card():
     colors = form.data['colors']
     color_identity = form.data['color_identity']
     legalities = form.data['legalities']
+
+    obj = Card.query.filter(Card.card_name == card_name).first()
+
+    if obj:
+      return obj.to_dict()
+      # return {'message': 'Card already in database'}
 
     new_card = Card(card_name=card_name, card_image=card_image, mana_cost=mana_cost, cmc=cmc, type_line=type_line,oracle_text=oracle_text,power=power,toughness=toughness,colors=colors,color_identity=color_identity, legalities=legalities)
 
@@ -44,6 +51,7 @@ def card_by_id(id):
   card = Card.query.get_or_404(id)
 
   return {'card': [card.to_dict()]}
+
 
 
 

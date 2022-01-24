@@ -13,6 +13,7 @@ import CardByIdPage from './components/CardByIdPage';
 import CreateDeckPage from './components/CreateDeckPage';
 import DeckByIdPage from './components/DeckByIdPage';
 import UpdateDeckPage from './components/UpdateDeckPage';
+import DecksPage from './components/DecksPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,6 +45,9 @@ function App() {
         </Route> */}
         <Route path='/decks/:id/edit' exact={true}>
           <UpdateDeckPage />
+        </Route>
+        <Route path='/decks/all' exact={true}>
+          <DecksPage />
         </Route>
         <Route path='/cards/:id' exact={true}>
           <CardByIdPage />

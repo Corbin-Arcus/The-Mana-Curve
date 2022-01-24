@@ -3,6 +3,22 @@ const GET_DECK = 'deck/GET_DECK'
 const ADD_CARD = 'deck/ADD_CARD'
 const DELETE_DECK = 'deck/DELETE_DECK'
 const UPDATE_DECK = 'deck/UPDATE_DECK'
+const GET_DECKS = 'decks/GET_DECKS'
+const DELETE_CARD = 'deck/DELETE_CARD'
+
+const deleteCard = (deck) => {
+  return{
+    type: DELETE_CARD,
+    payload: deck
+  }
+}
+
+const getDecks = (deck) => {
+  return{
+    type: GET_DECKS,
+    payload: deck
+  }
+}
 
 const updateDeck = (deck) => {
   return{
@@ -38,6 +54,25 @@ const createDeck = (deck) => {
   }
 }
 
+export const getAllDecks = (userId) => async (dispatch) => {
+  const res = await fetch (`/api/decks/all/${userId}`, {
+    method: 'GET'
+  })
+
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(getDecks(data))
+    return data
+  }
+  else if (res.status < 500) {
+    const data = await res.json()
+    if (data.errors) return data.errors
+  }
+  else {
+    return ['An error occurred. Please try again']
+  }
+}
+
 export const updateOneDeck = (deckId, deck_name ) => async (dispatch) => {
   const res = await fetch(`/api/decks/${deckId}`, {
     method: 'PUT',
@@ -67,6 +102,32 @@ export const deleteADeck = (deckId) => async (dispatch)=> {
     method: 'DELETE'
   })
   dispatch(deleteDeck())
+}
+
+export const removeACard = ({cardId, deckId}) => async (dispatch) => {
+  const res = await fetch(`/api/decks/${deckId}/remove/${cardId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      deckId,
+      cardId
+    })
+  })
+
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(deleteCard(data))
+    return data
+  }
+  else if (res.status < 500) {
+    const data = await res.json()
+    if (data.errors) return data.errors
+  }
+  else {
+    return ['An error occurred. Please try again']
+  }
 }
 
 export const addACard = ({cardId, deckId}) => async (dispatch) => {
@@ -147,6 +208,9 @@ const deckReducer = (state = {}, action) => {
       return newState
     case UPDATE_DECK:
       newState = {...state, ...newState}
+      return newState
+    case GET_DECKS:
+      newState = {...action.payload}
       return newState
     default:
       return state

@@ -23,6 +23,12 @@ class Deck(db.Model):
     db.session.commit()
     return self
 
+  def remove_card(self, card):
+    if card in self.cards:
+     self.cards.remove(card)
+     db.session.commit()
+     return self
+
 
   def to_dict(self):
             return {

@@ -1,6 +1,7 @@
 const ADD_CARD = 'card/ADD_CARD'
 const GET_CARD = 'card/GET_CARD'
 
+
 const addCard = (card) => {
   return{
     type: ADD_CARD,

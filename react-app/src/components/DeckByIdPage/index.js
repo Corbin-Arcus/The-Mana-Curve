@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as deckActions from '../../store/deck'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useParams, Link } from 'react-router-dom'
 import { useHistory } from 'react-router';
 
 function DeckByIdPage() {
@@ -19,6 +19,11 @@ function DeckByIdPage() {
     history.push('/')
   }
 
+  const deleteCard = (cardId) => {
+    const deckId = deck?.id
+    dispatch(deckActions.removeACard({cardId, deckId}))
+  }
+
 
   return(
     <div>
@@ -28,7 +33,8 @@ function DeckByIdPage() {
       <br />
       {deck?.cards?.map(card =>
         <>
-          <img alt={card?.card_name} src={card?.card_image}></img>
+          <Link to={`/cards/${card.id}`}><img alt={card?.card_name} src={card?.card_image}></img></Link>
+          <button onClick={() => deleteCard(card.id)}>Delete card</button>
         </>
        )}
     </div>
