@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as deckActions from '../../store/deck'
 import { NavLink, useParams, Link } from 'react-router-dom'
 import { useHistory } from 'react-router';
 
-function DeckByIdPage() {
+function DeckByIdPage({currentCard, setCurrentCard}) {
   const history = useHistory()
   const dispatch = useDispatch()
   const { id } = useParams()
   const deck = useSelector(state => state.deck[0])
+  console.log(`888888888888888888888888888888--Deck by Id Page--88888888888888888`)
+  console.log(deck)
+  console.log(`888888888888888888888888888888888888888888888888888888888888888888`)
   const card = useSelector(state => state.card)
-  useEffect(() => {
-    dispatch(deckActions.getOneDeck(id))
-  },[dispatch, card])
+  useEffect(async () => {
+    await dispatch(deckActions.getOneDeck(id))
+  },[dispatch, currentCard])
   const deckId = deck?.id
   const sendId = () => {
     dispatch(deckActions.deleteADeck(deckId))
@@ -21,7 +24,8 @@ function DeckByIdPage() {
 
   const deleteCard = (cardId) => {
     const deckId = deck?.id
-    dispatch(deckActions.removeACard({cardId, deckId}))
+    const deleteCard = dispatch(deckActions.removeACard({cardId, deckId}))
+    setCurrentCard(deleteCard)
   }
 
 
@@ -29,7 +33,7 @@ function DeckByIdPage() {
     <div>
       <h1>{deck?.deck_name}</h1>
       <button onClick={sendId}>Delete {deck?.deck_name} </button>
-      <NavLink to={`/decks/${deckId}/edit`}><button>Edit Deck</button></NavLink>
+      <NavLink to={`/decks/${deckId}/edit`}><button>Rename Deck</button></NavLink>
       <br />
       {deck?.cards?.map(card =>
         <>

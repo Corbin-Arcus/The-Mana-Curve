@@ -4,11 +4,14 @@ import * as cardActions from '../../store/card'
 import * as deckActions from '../../store/deck'
 import { useHistory } from 'react-router';
 
-function CreateCardPage() {
+function CreateCardPage({currentCard, setCurrentCard}) {
   const history = useHistory();
   const dispatch = useDispatch()
   const card = useSelector(state => state.card)
-  const deck = useSelector(state => state.deck)
+  const deck = useSelector(state => state.deck[0])
+  console.log(`888888888888888888888888888888--Create Card Page--88888888888888888`)
+  console.log(deck)
+  console.log(`888888888888888888888888888888888888888888888888888888888888888888`)
   const [cardName, setCardName] = useState('')
   const [errors, setErrors] = useState([])
   const handleSubmit = async (e) => {
@@ -23,8 +26,9 @@ function CreateCardPage() {
   }
   useEffect(async () => {
     const cardId = card?.id
-    const deckId = deck[0]?.id
+    const deckId = deck?.id
     const data2 = await dispatch(deckActions.addACard({cardId, deckId}))
+    setCurrentCard(data2)
   },[card])
 
 

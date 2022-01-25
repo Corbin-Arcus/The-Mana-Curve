@@ -144,6 +144,7 @@ export const addACard = ({cardId, deckId}) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
+    console.log(data)
     dispatch(addCard(data))
     return data
   }
@@ -210,7 +211,7 @@ const deckReducer = (state = {}, action) => {
       newState = {...state, ...newState}
       return newState
     case GET_DECKS:
-      newState = {...action.payload}
+      newState = {...state, ...action.payload}
       return newState
     default:
       return state
