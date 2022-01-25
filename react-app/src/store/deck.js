@@ -40,12 +40,12 @@ const addCard = (deck) => {
   }
 }
 
-const getDeck = (deck) => {
-  return{
-    type: GET_DECK,
-    payload: deck
-  }
-}
+// const getDeck = (deck) => {
+//   return{
+//     type: GET_DECK,
+//     payload: deck
+//   }
+// }
 
 const createDeck = (deck) => {
   return{
@@ -157,11 +157,11 @@ export const addACard = ({cardId, deckId}) => async (dispatch) => {
   }
 }
 
-export const getOneDeck = (id) => async (dispatch) => {
-  const res = await fetch(`/api/decks/${id}`)
-  const data = await res.json()
-  dispatch(getDeck(data.deck))
-}
+// export const getOneDeck = (id) => async (dispatch) => {
+//   const res = await fetch(`/api/decks/${id}`)
+//   const data = await res.json()
+//   dispatch(getDeck(data.deck))
+// }
 
 export const createADeck = ( user_id, deck_name, deck_format ) => async (dispatch) => {
   const res = await fetch('/api/decks/', {
@@ -198,9 +198,9 @@ const deckReducer = (state = {}, action) => {
     case CREATE_DECK:
       newState = {...state, ...action.payload}
       return newState
-    case GET_DECK:
-      newState = {...state, ...action.payload}
-      return newState
+    // case GET_DECK:
+    //   newState = {...state, ...action.payload}
+    //   return newState
     case ADD_CARD:
       newState = {...state, ...action.payload}
       return newState
@@ -211,6 +211,10 @@ const deckReducer = (state = {}, action) => {
       newState = {...state, ...newState}
       return newState
     case GET_DECKS:
+      let decks = Object.values(action.payload.decks)
+      newState = {...state, decks}
+      return newState
+    case DELETE_CARD:
       newState = {...state, ...action.payload}
       return newState
     default:

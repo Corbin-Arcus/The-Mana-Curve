@@ -8,24 +8,26 @@ function DeckByIdPage({currentCard, setCurrentCard}) {
   const history = useHistory()
   const dispatch = useDispatch()
   const { id } = useParams()
-  const deck = useSelector(state => state.deck[0])
-  console.log(`888888888888888888888888888888--Deck by Id Page--88888888888888888`)
-  console.log(deck)
-  console.log(`888888888888888888888888888888888888888888888888888888888888888888`)
-  const card = useSelector(state => state.card)
+  const deckArr = useSelector(state => state.deck.decks)
   useEffect(async () => {
-    await dispatch(deckActions.getOneDeck(id))
-  },[dispatch, currentCard])
+    await dispatch(deckActions.getAllDecks(user.id))
+  },[dispatch])
+  const card = useSelector(state => state.card)
+  let deck;
+  if (deckArr){
+    deck = deckArr.filter(deck => deck.id == id)[0]
+  }
+  const user = useSelector(state => state.session.user)
   const deckId = deck?.id
   const sendId = () => {
     dispatch(deckActions.deleteADeck(deckId))
     history.push('/')
   }
 
-  const deleteCard = (cardId) => {
+  const deleteCard = async (cardId) => {
     const deckId = deck?.id
-    const deleteCard = dispatch(deckActions.removeACard({cardId, deckId}))
-    setCurrentCard(deleteCard)
+    await dispatch(deckActions.removeACard({cardId, deckId}))
+    await dispatch(deckActions.getAllDecks(user.id))
   }
 
 

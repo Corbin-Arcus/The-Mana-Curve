@@ -2,16 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as cardActions from '../../store/card'
 import * as deckActions from '../../store/deck'
+import { NavLink, useParams, Link } from 'react-router-dom'
 import { useHistory } from 'react-router';
 
 function CreateCardPage({currentCard, setCurrentCard}) {
   const history = useHistory();
   const dispatch = useDispatch()
+  const { id } = useParams()
   const card = useSelector(state => state.card)
-  const deck = useSelector(state => state.deck[0])
-  console.log(`888888888888888888888888888888--Create Card Page--88888888888888888`)
-  console.log(deck)
-  console.log(`888888888888888888888888888888888888888888888888888888888888888888`)
+  const deckArr = useSelector(state => state.deck.decks)
+  const user = useSelector(state => state.session.user)
+  let deck;
+  if (deckArr){
+    deck = deckArr.filter(deck => deck.id == id)[0]
+  }
   const [cardName, setCardName] = useState('')
   const [errors, setErrors] = useState([])
   const handleSubmit = async (e) => {
@@ -27,8 +31,9 @@ function CreateCardPage({currentCard, setCurrentCard}) {
   useEffect(async () => {
     const cardId = card?.id
     const deckId = deck?.id
+    console.log(deckId)
     const data2 = await dispatch(deckActions.addACard({cardId, deckId}))
-    setCurrentCard(data2)
+    dispatch(deckActions.getAllDecks(user.id))
   },[card])
 
 

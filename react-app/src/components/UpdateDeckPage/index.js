@@ -8,11 +8,8 @@ import { useParams } from 'react-router-dom';
 function UpdateDeckPage() {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const [userId, setUserId] = useState(0)
   const [deckName, setDeckName] = useState('')
-  const [deckFormat, setDeckFormat] = useState('')
   const [errors, setErrors] = useState([])
-  // const deck = useSelector(state => state.deck)
   const session = useSelector(state => state.session);
   const currentUser = session.user.id
   const { id } = useParams()
@@ -26,7 +23,7 @@ function UpdateDeckPage() {
     }
     else {
       setErrors([])
-      history.push('/')
+      history.push(`/decks/${deckId}`)
       return dispatch(deckActions.updateOneDeck(deckId, deckName))
         .catch(async (res) => {
           const data = await res.json();
