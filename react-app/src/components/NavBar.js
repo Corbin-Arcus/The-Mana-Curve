@@ -10,8 +10,8 @@ const NavBar = () => {
     <StyledNavBar>
       <ul>
         <li className='logo'>
-          <h1>The-Mana-Curve</h1>
-          <img alt='logo' src={logo} />
+        <NavLink to='/' exact={true} activeClassName='active'><h1>The-Mana-Curve</h1></NavLink>
+        <NavLink to='/' exact={true} activeClassName='active'><img alt='logo' src={logo} /></NavLink>
         </li>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>

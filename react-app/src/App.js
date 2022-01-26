@@ -15,6 +15,8 @@ import DeckByIdPage from './components/DeckByIdPage';
 import UpdateDeckPage from './components/UpdateDeckPage';
 import DecksPage from './components/DecksPage';
 import { Container } from './components/styles/Container.styled'
+import Footer from './components/Footer'
+import HomePage from './components/HomePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -69,9 +71,10 @@ function App() {
             <User />
           </ProtectedRoute>
           <ProtectedRoute path='/' exact={true} >
-            <h1>My Home Page</h1>
+            <HomePage />
           </ProtectedRoute>
         </Switch>
+        <Footer />
       </Container>
     </BrowserRouter>
   );

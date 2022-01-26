@@ -144,7 +144,6 @@ export const addACard = ({cardId, deckId}) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json()
-    console.log(data)
     dispatch(addCard(data))
     return data
   }

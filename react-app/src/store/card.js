@@ -26,6 +26,10 @@ export const addACard = (cardName) => async (dispatch) => {
   const card = await fetch(`https://api.scryfall.com/cards/named?fuzzy=${cardName}`)
   // .then(response => response.json())
   // .then(data => console.log(data));
+    if(card.status !== 200){
+      window.alert('Card does not exist, please check spelling and try again!')
+      return
+    }
 
 
   const data = await card.json()

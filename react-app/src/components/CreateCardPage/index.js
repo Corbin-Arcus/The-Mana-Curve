@@ -32,7 +32,6 @@ function CreateCardPage({currentCard, setCurrentCard}) {
   useEffect(async () => {
     const cardId = card?.id
     const deckId = deck?.id
-    console.log(deckId)
     const data2 = await dispatch(deckActions.addACard({cardId, deckId}))
     dispatch(deckActions.getAllDecks(user.id))
   },[card])
