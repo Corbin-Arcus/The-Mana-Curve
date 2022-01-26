@@ -22,7 +22,7 @@ function DeckByIdPage({currentCard, setCurrentCard}) {
   const deckId = deck?.id
   const sendId = () => {
     dispatch(deckActions.deleteADeck(deckId))
-    history.push('/')
+    history.push('/decks/all')
   }
 
   const deleteCard = async (cardId) => {

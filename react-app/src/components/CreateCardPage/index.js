@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as cardActions from '../../store/card'
 import * as deckActions from '../../store/deck'
@@ -19,6 +19,7 @@ function CreateCardPage({currentCard, setCurrentCard}) {
   }
   const [cardName, setCardName] = useState('')
   const [errors, setErrors] = useState([])
+  const [toggle, setToggle] = useState(false)
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (cardName.length > 100) {
@@ -29,11 +30,16 @@ function CreateCardPage({currentCard, setCurrentCard}) {
       await dispatch(cardActions.addACard(cardName))
     }
   }
+
+
   useEffect(async () => {
-    const cardId = card?.id
-    const deckId = deck?.id
-    const data2 = await dispatch(deckActions.addACard({cardId, deckId}))
-    dispatch(deckActions.getAllDecks(user.id))
+    if(toggle == true){
+      const cardId = card?.id
+      const deckId = deck?.id
+      await dispatch(deckActions.addACard({cardId, deckId}))
+      dispatch(deckActions.getAllDecks(user.id))
+      setToggle(false)
+    }
   },[card])
 
 
@@ -54,7 +60,7 @@ function CreateCardPage({currentCard, setCurrentCard}) {
           required
           />
         </label>
-        <button type='submit'>Add to deck!</button>
+        <button type='submit' onClick={() => setToggle(true)}>Add to deck!</button>
       </form>
     </CreateCardContainer>
   )

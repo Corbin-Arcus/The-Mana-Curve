@@ -28,7 +28,7 @@ function CreateDeckPage() {
     }
     else {
       setErrors([])
-      history.push('/decks')
+      history.push('/decks/all')
       return dispatch(deckActions.createADeck(currentUser, deckName, deckFormat ))
         .catch(async (res) => {
           const data = await res.json();
@@ -67,6 +67,7 @@ function CreateDeckPage() {
           Choose your deck's format!
           <br />
           <select value={deckFormat} name='deck_format' onChange={(e) => setDeckFormat(e.target.value)}>
+            <option></option>
             <option value='Standard'>Standard</option>
             <option value='Modern'>Modern</option>
             <option value='Legacy'>Legacy</option>
