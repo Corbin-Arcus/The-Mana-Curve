@@ -4,6 +4,7 @@ import * as cardActions from '../../store/card'
 import * as deckActions from '../../store/deck'
 import { NavLink, useParams, Link } from 'react-router-dom'
 import { useHistory } from 'react-router';
+import {CreateCardContainer} from '../styles/CreateCardPage.styled'
 
 function CreateCardPage({currentCard, setCurrentCard}) {
   const history = useHistory();
@@ -25,7 +26,7 @@ function CreateCardPage({currentCard, setCurrentCard}) {
     }
     else {
       setErrors([])
-       const data = await dispatch(cardActions.addACard(cardName))
+      await dispatch(cardActions.addACard(cardName))
     }
   }
   useEffect(async () => {
@@ -38,7 +39,7 @@ function CreateCardPage({currentCard, setCurrentCard}) {
 
 
   return(
-    <div>
+    <CreateCardContainer>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -56,7 +57,7 @@ function CreateCardPage({currentCard, setCurrentCard}) {
         </label>
         <button type='submit'>Add to deck!</button>
       </form>
-    </div>
+    </CreateCardContainer>
   )
 }
 

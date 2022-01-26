@@ -14,6 +14,7 @@ import CreateDeckPage from './components/CreateDeckPage';
 import DeckByIdPage from './components/DeckByIdPage';
 import UpdateDeckPage from './components/UpdateDeckPage';
 import DecksPage from './components/DecksPage';
+import { Container } from './components/styles/Container.styled'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,42 +35,44 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        {/* <Route path='/cards/find' exact={true}>
-          <CreateCardPage />
-        </Route> */}
-        <Route path='/decks/:id/edit' exact={true}>
-          <UpdateDeckPage />
-        </Route>
-        <Route path='/decks/all' exact={true}>
-          <DecksPage />
-        </Route>
-        <Route path='/cards/:id' exact={true}>
-          <CardByIdPage />
-        </Route>
-        <Route path='/decks/new' exact={true}>
-          <CreateDeckPage />
-        </Route>
-        <Route path='/decks/:id' exact={true}>
-          <CreateCardPage setCurrentCard={setCurrentCard} currentCard={currentCard}/>
-          <DeckByIdPage setCurrentCard={setCurrentCard} currentCard={currentCard}/>
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
-      </Switch>
+      <Container>
+        <Switch>
+          <Route path='/login' exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm />
+          </Route>
+          <Route path='/cards/find' exact={true}>
+            <CreateCardPage />
+          </Route>
+          <Route path='/decks/:id/edit' exact={true}>
+            <UpdateDeckPage />
+          </Route>
+          <Route path='/decks/all' exact={true}>
+            <DecksPage />
+          </Route>
+          <Route path='/cards/:id' exact={true}>
+            <CardByIdPage />
+          </Route>
+          <Route path='/decks/new' exact={true}>
+            <CreateDeckPage />
+          </Route>
+          <Route path='/decks/:id' exact={true}>
+            <CreateCardPage setCurrentCard={setCurrentCard} currentCard={currentCard}/>
+            <DeckByIdPage setCurrentCard={setCurrentCard} currentCard={currentCard}/>
+          </Route>
+          <ProtectedRoute path='/users' exact={true} >
+            <UsersList/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute path='/' exact={true} >
+            <h1>My Home Page</h1>
+          </ProtectedRoute>
+        </Switch>
+      </Container>
     </BrowserRouter>
   );
 }

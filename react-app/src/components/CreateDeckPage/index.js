@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as deckActions from '../../store/deck'
 import { useHistory } from 'react-router';
+import {CreateDecksContainer} from '../styles/CreateDeckPage.styled'
 
 
 function CreateDeckPage() {
@@ -14,6 +15,7 @@ function CreateDeckPage() {
   // const deck = useSelector(state => state.deck)
   const session = useSelector(state => state.session);
   const currentUser = session.user.id
+
 
 
   const handleSubmit = async (e) => {
@@ -38,11 +40,11 @@ function CreateDeckPage() {
 
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <ul>
+    <CreateDecksContainer>
+      <form onSubmit={handleSubmit} className='form'>
+        {errors.length > 0 && <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
+        </ul>}
         <h1>Create your deck!</h1>
         <input
         type='hidden'
@@ -51,6 +53,7 @@ function CreateDeckPage() {
         />
         <label>
           Deck Name
+          <br />
           <input
           type='text'
           name='deck_name'
@@ -59,8 +62,10 @@ function CreateDeckPage() {
           required
           />
         </label>
+        <br />
         <label>
           Choose your deck's format!
+          <br />
           <select value={deckFormat} name='deck_format' onChange={(e) => setDeckFormat(e.target.value)}>
             <option value='Standard'>Standard</option>
             <option value='Modern'>Modern</option>
@@ -72,9 +77,10 @@ function CreateDeckPage() {
             <option value='CEDH/Competitive Commander'>CEDH/Competitive Commander</option>
           </select>
         </label>
+        <br />
         <button type='submit'>Create Deck!</button>
       </form>
-    </div>
+    </CreateDecksContainer>
   )
 }
 

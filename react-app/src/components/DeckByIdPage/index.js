@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as deckActions from '../../store/deck'
 import { NavLink, useParams, Link } from 'react-router-dom'
 import { useHistory } from 'react-router';
+import {DeckByIdContainer} from '../styles/DeckByIdPage.styled'
 
 function DeckByIdPage({currentCard, setCurrentCard}) {
   const history = useHistory()
@@ -32,18 +33,20 @@ function DeckByIdPage({currentCard, setCurrentCard}) {
 
 
   return(
-    <div>
+    <DeckByIdContainer>
       <h1>{deck?.deck_name}</h1>
       <button onClick={sendId}>Delete {deck?.deck_name} </button>
       <NavLink to={`/decks/${deckId}/edit`}><button>Rename Deck</button></NavLink>
       <br />
-      {deck?.cards?.map(card =>
-        <>
-          <Link to={`/cards/${card.id}`}><img alt={card?.card_name} src={card?.card_image}></img></Link>
-          <button onClick={() => deleteCard(card.id)}>Delete card</button>
-        </>
-       )}
-    </div>
+      <div className='cardContainer'>
+        {deck?.cards?.map(card =>
+          <div className='card'>
+            <Link to={`/cards/${card.id}`}><img alt={card?.card_name} src={card?.card_image}></img></Link>
+            <button onClick={() => deleteCard(card.id)}>Delete card</button>
+          </div>
+        )}
+      </div>
+    </DeckByIdContainer>
   )
 }
 
