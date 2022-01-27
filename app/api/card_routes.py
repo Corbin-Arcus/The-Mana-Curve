@@ -31,11 +31,10 @@ def create_card():
     color_identity = form.data['color_identity']
     legalities = form.data['legalities']
 
-    obj = Card.query.filter(Card.card_name == card_name).first()
+    # obj = Card.query.filter(Card.card_name == card_name).first()
 
-    if obj:
-      return obj.to_dict()
-      # return {'message': 'Card already in database'}
+    # if obj:
+    #   return obj.to_dict()
 
     new_card = Card(card_name=card_name, card_image=card_image, mana_cost=mana_cost, cmc=cmc, type_line=type_line,oracle_text=oracle_text,power=power,toughness=toughness,colors=colors,color_identity=color_identity, legalities=legalities)
 

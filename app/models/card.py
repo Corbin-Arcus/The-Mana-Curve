@@ -6,7 +6,7 @@ class Card(db.Model):
 
   id = db.Column(db.Integer, primary_key=True, nullable=False)
 
-  card_name = db.Column(db.String(500), nullable=False, unique=True)
+  card_name = db.Column(db.String(500), nullable=False)
 
   card_image = db.Column(db.String(500), nullable=False)
 

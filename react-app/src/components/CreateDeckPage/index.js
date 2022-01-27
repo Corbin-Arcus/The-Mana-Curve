@@ -34,7 +34,6 @@ function CreateDeckPage() {
           const data = await res.json();
           if (data && data.errors.length > 0) setErrors(data.errors)
         })
-
     }
   }
 
