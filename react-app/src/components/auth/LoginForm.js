@@ -13,9 +13,14 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
+    if(email.includes('@') === false){
+      setErrors(['Email is not valid please try again'])
+    }
+    else{
+      const data = await dispatch(login(email, password));
+      if (data) {
+        setErrors(data);
+      }
     }
   };
 

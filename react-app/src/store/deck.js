@@ -29,7 +29,7 @@ const updateDeck = (deck) => {
 
 const deleteDeck = () => {
   return{
-    type:DELETE_DECK,
+    type:DELETE_DECK
   }
 }
 
