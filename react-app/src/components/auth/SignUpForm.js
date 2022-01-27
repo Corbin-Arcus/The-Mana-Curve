@@ -15,11 +15,23 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    if(username.length < 5 || username.length > 100){
+      console.log(errors)
+      setErrors(['Username must be between 5 and 100 characters'])
+    }
+    else if(email.includes('@') === false){
+      setErrors(['Email is not valid please try again'])
+    }
+    else if(password.length < 5){
+      setErrors(['Please provide an password with more than 5 characters'])
+    }
+    else if(password !== repeatPassword)
+    {
+      setErrors(['Passwords do not match please try again'])
+    }
+    else{
+      setErrors([])
       const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
     }
   };
 

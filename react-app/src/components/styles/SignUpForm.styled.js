@@ -15,4 +15,8 @@ export const SignUpFormContainer = styled.div`
   h1, label{
     color:white;
   }
+
+  div{
+    color: white;
+  }
 `

@@ -8,7 +8,7 @@ class Deck(db.Model):
 
   user_id = db.Column(db.Integer,  db.ForeignKey('users.id'), nullable=False)
 
-  deck_name = db.Column(db.String(100), nullable=False, unique=True)
+  deck_name = db.Column(db.String(100), nullable=False)
 
   deck_format = db.Column(db.String(100), nullable=False)
 

@@ -24,11 +24,12 @@ function UpdateDeckPage() {
     else {
       setErrors([])
       history.push(`/decks/${deckId}`)
-      return dispatch(deckActions.updateOneDeck(deckId, deckName))
+       dispatch(deckActions.updateOneDeck(deckId, deckName))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors.length > 0) setErrors(data.errors)
         })
+        await dispatch(deckActions.getAllDecks(currentUser))
 
     }
   }

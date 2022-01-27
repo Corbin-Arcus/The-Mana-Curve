@@ -29,11 +29,12 @@ function CreateDeckPage() {
     else {
       setErrors([])
       history.push('/decks/all')
-      return dispatch(deckActions.createADeck(currentUser, deckName, deckFormat ))
+       dispatch(deckActions.createADeck(currentUser, deckName, deckFormat ))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors.length > 0) setErrors(data.errors)
         })
+      return dispatch(deckActions.getAllDecks(currentUser))
     }
   }
 
