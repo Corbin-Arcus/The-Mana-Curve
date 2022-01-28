@@ -8,8 +8,8 @@ def user_exists(form, field):
     # Checking if user exists
     email = field.data
     user = User.query.filter(User.email == email).first()
-    if user:
-        raise ValidationError('Email address is already in use.')
+    # if user:
+    #     raise ValidationError('Email address incorrect')
 
 
 def username_exists(form, field):
@@ -17,7 +17,7 @@ def username_exists(form, field):
     username = field.data
     user = User.query.filter(User.username == username).first()
     if user:
-        raise ValidationError('Username is already in use.')
+        raise ValidationError('Username incorrect')
 
 
 class SignUpForm(FlaskForm):

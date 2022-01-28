@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as deckActions from '../../store/deck'
 import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
+import { UpdateDecksContainer } from '../styles/UpdateDeckPage.styled'
 
 
 function UpdateDeckPage() {
@@ -14,6 +15,19 @@ function UpdateDeckPage() {
   const currentUser = session.user.id
   const { id } = useParams()
   const deckId = id
+  const deckArr = (useSelector(state => state.deck.decks))
+  let deck;
+  if (deckArr){
+    deck = deckArr.filter(deck => deck.id == deckId)[0]
+  }
+  console.log(deck)
+  // console.log(deck)
+  useEffect(() => {
+    setDeckName(deck.deck_name)
+  },[dispatch])
+
+
+
 
 
   const handleSubmit = async (e) => {
@@ -36,7 +50,7 @@ function UpdateDeckPage() {
 
 
   return (
-    <div>
+    <UpdateDecksContainer>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -54,7 +68,7 @@ function UpdateDeckPage() {
         </label>
         <button type='submit'>Update Deck!</button>
       </form>
-    </div>
+    </UpdateDecksContainer>
   )
 }
 

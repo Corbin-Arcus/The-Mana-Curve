@@ -30,8 +30,11 @@ const SignUpForm = () => {
       setErrors(['Passwords do not match please try again'])
     }
     else{
-      setErrors([])
+      // setErrors([])
       const data = await dispatch(signUp(username, email, password));
+      if(data){
+        setErrors(data)
+      }
     }
   };
 

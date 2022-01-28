@@ -17,4 +17,8 @@ export const DeckByIdContainer = styled.div`
   .card{
     padding: 5px;
   }
+
+  button{
+    margin: 5px;
+  }
 `
