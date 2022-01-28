@@ -7,6 +7,8 @@ This is the README for the final solo project from App Academy.
 The project was inspired by Archideky and build using Javascript,
 React.js and Redux for the front end and Python with Flask for the backend.
 
+<img src='https://cdn.discordapp.com/attachments/889944469359718421/936665508814684230/splashPage.PNG'></img>
+
 
 # Features
 >Sign up/Login with credentials
