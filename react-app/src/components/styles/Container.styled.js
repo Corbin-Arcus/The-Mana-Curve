@@ -10,4 +10,5 @@ export const Container = styled.div`
   justify-content:center;
   align-items: center;
   flex-direction:column;
+  overflow-y: scroll;
  `

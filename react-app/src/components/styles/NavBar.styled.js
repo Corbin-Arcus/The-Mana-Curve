@@ -5,6 +5,8 @@ export const StyledNavBar = styled.nav`
   padding: 0 40px;
   margin-top: 0;
   height:50px;
+  /* position: absolute; */
+  /* position: fixed; */
 
   ul{
     display:flex;
