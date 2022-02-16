@@ -33,13 +33,13 @@ function DeckByIdPage({currentCard, setCurrentCard}) {
   //   await dispatch(deckActions.getAllDecks(user.id))
   // }
 
-  const creatures = deck?.cards.filter(card => card.type_line.includes("Creature"))
-  const artifacts = deck?.cards.filter(card => card.type_line.includes("Artifact") && !card.type_line.includes("Creature") && !card.type_line.includes("Land") )
-  const enchantments = deck?.cards.filter(card => card.type_line.includes("Enchantment") && !card.type_line.includes("Creature"))
-  const lands = deck?.cards.filter(card => card.type_line.includes("Land"))
-  const planeswalkers = deck?.cards.filter(card => card.type_line.includes("Planeswalker"))
-  const instants = deck?.cards.filter(card => card.type_line.includes("Instant"))
-  const sorcery = deck?.cards.filter(card => card.type_line.includes("Sorcery"))
+  const creatures = deck?.cards.filter(card => card.type_line.includes("Creature")).sort((a, b) => a.card_name.toLowerCase().localeCompare(b.card_name.toLowerCase()))
+  const artifacts = deck?.cards.filter(card => card.type_line.includes("Artifact") && !card.type_line.includes("Creature") && !card.type_line.includes("Land")).sort((a, b) => a.card_name.toLowerCase().localeCompare(b.card_name.toLowerCase()))
+  const enchantments = deck?.cards.filter(card => card.type_line.includes("Enchantment") && !card.type_line.includes("Creature")).sort((a, b) => a.card_name.toLowerCase().localeCompare(b.card_name.toLowerCase()))
+  const lands = deck?.cards.filter(card => card.type_line.includes("Land")).sort((a, b) => a.card_name.toLowerCase().localeCompare(b.card_name.toLowerCase()))
+  const planeswalkers = deck?.cards.filter(card => card.type_line.includes("Planeswalker")).sort((a, b) => a.card_name.toLowerCase().localeCompare(b.card_name.toLowerCase()))
+  const instants = deck?.cards.filter(card => card.type_line.includes("Instant")).sort((a, b) => a.card_name.toLowerCase().localeCompare(b.card_name.toLowerCase()))
+  const sorcery = deck?.cards.filter(card => card.type_line.includes("Sorcery")).sort((a, b) => a.card_name.toLowerCase().localeCompare(b.card_name.toLowerCase()))
 
 
 
