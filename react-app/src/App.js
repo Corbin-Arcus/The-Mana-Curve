@@ -17,6 +17,9 @@ import DecksPage from './components/DecksPage';
 import { Container } from './components/styles/Container.styled'
 import Footer from './components/Footer'
 import HomePage from './components/HomePage';
+import CreateCommentPage from './components/CreateCommentPage';
+import CommentsPage from './components/CommentsPage';
+import UpdateCommentPage from './components/updateCommentPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -63,6 +66,8 @@ function App() {
           <Route path='/decks/:id' exact={true}>
             <CreateCardPage setCurrentCard={setCurrentCard} currentCard={currentCard}/>
             <DeckByIdPage setCurrentCard={setCurrentCard} currentCard={currentCard}/>
+            <CreateCommentPage />
+            <CommentsPage />
           </Route>
           <ProtectedRoute path='/users' exact={true} >
             <UsersList/>
@@ -73,8 +78,11 @@ function App() {
           <ProtectedRoute path='/' exact={true} >
             <HomePage />
           </ProtectedRoute>
+          <ProtectedRoute path='/comments/:id/edit' exact={true}>
+            <UpdateCommentPage />
+          </ProtectedRoute>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Container>
     </BrowserRouter>
   );

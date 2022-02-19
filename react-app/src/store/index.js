@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 import session from './session'
 import cardReducer from './card';
 import deckReducer from './deck';
+import commentReducer from './comment';
 const rootReducer = combineReducers({
   session,
   card: cardReducer,
-  deck: deckReducer
+  deck: deckReducer,
+  comment: commentReducer
 });
 
 
