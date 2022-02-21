@@ -6,7 +6,7 @@ export const DeckByIdContainer = styled.div`
   position: relative;
   margin-bottom: 75px;
   margin-left: 35px;
-  margin-top: 5em;
+  /* margin-top: 5em; */
   h1{
     color:white;
   }

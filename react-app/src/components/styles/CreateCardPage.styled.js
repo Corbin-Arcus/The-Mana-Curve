@@ -6,7 +6,7 @@ export const CreateCardContainer = styled.div`
  }
 
  /* height: 150px; */
- margin-top: 750px;
+ /* margin-top: 750px; */
 
 
 `

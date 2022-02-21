@@ -4,11 +4,13 @@ export const Container = styled.div`
   width: 100vw;
   max-width: 100%;
   margin: 0 auto;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   background-color: #242221;
   display: flex;
   justify-content:center;
   align-items: center;
   flex-direction:column;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
+  overflow-x:hidden;
  `
