@@ -25,7 +25,7 @@ function CreateCommentPage() {
 
   useEffect(() => {
     setUserId(currentUser)
-    setDeckId(deck.id)
+    setDeckId(deck?.id)
     setUsername(theusername)
   }, [])
 
@@ -37,15 +37,11 @@ function CreateCommentPage() {
     }
     else {
       setErrors([])
-      history.push(`/decks/${deckId}`)
-      console.log(userId, deckId, comment)
-       dispatch(commentActions.createAComment(userId, deckId, comment, username ))
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors.length > 0) setErrors(data.errors)
-        })
-        return dispatch(commentActions.getAllComments(currentUser, deckId))
-    }
+      // history.push(`/decks/${deckId}`)
+       await dispatch(commentActions.createAComment(userId, id, comment, username ))
+       console.log(deckId)
+       dispatch(commentActions.getAllComments(userId, id))
+      }
   }
 
 

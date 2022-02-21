@@ -4,6 +4,7 @@ import * as commentActions from '../../store/comment'
 import * as deckActions from '../../store/deck'
 import { DecksContainer } from '../styles/DecksPage.styled'
 import { NavLink, useParams, Link, useHistory } from 'react-router-dom'
+import { CommentsPageContainer } from '../styles/CommentPage.styled'
 
 function CommentsPage(){
   const history = useHistory()
@@ -17,29 +18,29 @@ function CommentsPage(){
     deck = deckArr.filter(deck => deck.id == id)[0]
   }
   useEffect(() => {
-    dispatch(commentActions.getAllComments(user.id, deck.id))
+     dispatch(commentActions.getAllComments(user?.id, id))
   }, [dispatch])
 
   const sendId = (comment) => {
     dispatch(commentActions.deleteAComment(comment.id))
     history.push(`/decks/${comment.deck_id}`)
-    return dispatch(commentActions.getAllComments(user.id, comment.deck_id))
+    return dispatch(commentActions.getAllComments(user?.id, comment?.deck_id))
   }
 
 
 
   return (
-    <div>
+    <CommentsPageContainer>
       <h1>Comments:</h1>
       {comments?.map(comment =>
         <>
-          <h5>{comment.username}</h5>
-          <h2>{comment.comment}</h2>
-          <NavLink to={`/comments/${comment.id}/edit`}><button>Edit</button></NavLink>
+          <h5>{comment?.username}</h5>
+          <h2>{comment?.comment}</h2>
+          <NavLink to={`/comments/${comment?.id}/edit`}><button>Edit</button></NavLink>
           <button onClick={() => sendId(comment)}>Delete comment</button>
         </>
       )}
-    </div>
+    </CommentsPageContainer>
   )
 }
 

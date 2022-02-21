@@ -50,32 +50,25 @@ function DeckByIdPage({currentCard, setCurrentCard}) {
       <NavLink to={`/decks/${deckId}/edit`}><button>Rename Deck</button></NavLink>
       <br />
       <div className='cardContainer'>
-        {/* {deck?.cards?.sort((a, b) => a.card_name.toLowerCase().localeCompare(b.card_name.toLowerCase()))
-        .map(card =>
-          <div className='card'>
-            <Link to={`/cards/${card.id}`}><img alt={card?.card_name} src={card?.card_image}></img></Link>
-            <button onClick={() => deleteCard(card.id)}>Delete card</button>
-          </div>
-        )} */}
-        {creatures.length > 0 &&
+        {creatures?.length > 0 &&
           <Category cards={creatures} title='Creature' deck={deck}/>
         }
-        {artifacts.length > 0 &&
+        {artifacts?.length > 0 &&
           <Category cards={artifacts} title='Artifact' deck={deck}/>
         }
-        {enchantments.length > 0 &&
+        {enchantments?.length > 0 &&
           <Category cards={enchantments} title='Enchantment' deck={deck}/>
         }
-        {lands.length > 0 &&
+        {lands?.length > 0 &&
         <Category cards={lands} title='Land' deck={deck}/>
         }
-        {planeswalkers.length > 0 &&
+        {planeswalkers?.length > 0 &&
           <Category cards={planeswalkers} title='Planeswalker' deck={deck}/>
         }
-        {instants.length > 0 &&
+        {instants?.length > 0 &&
         <Category cards={instants} title='Instant' deck={deck}/>
         }
-        {sorcery.length > 0 &&
+        {sorcery?.length > 0 &&
         <Category cards={sorcery} title='Sorcery' deck={deck}/>
         }
       </div>

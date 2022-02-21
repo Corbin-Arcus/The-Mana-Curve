@@ -4,6 +4,7 @@ import * as commentActions from '../../store/comment'
 import * as deckActions from '../../store/deck'
 import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
+import { UpdateCommentsContainer } from '../styles/UpdateCommentPage.styled'
 
 function UpdateCommentPage() {
   const history = useHistory()
@@ -33,17 +34,13 @@ function UpdateCommentPage() {
       setErrors([])
       history.push(`/decks/${deckId}`)
        dispatch(commentActions.updateOneComment(commentId, comment))
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors.length > 0) setErrors(data.errors)
-        })
         return dispatch(commentActions.getAllComments(currentUser, deckId))
 
     }
   }
 
   return (
-    <div>
+    <UpdateCommentsContainer>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -59,9 +56,9 @@ function UpdateCommentPage() {
           required
           />
         </label>
-        <button type='submit'>Update Deck!</button>
+        <button type='submit'>Update Comment!</button>
       </form>
-    </div>
+    </UpdateCommentsContainer>
   )
 }
 

@@ -61,6 +61,7 @@ export const updateOneComment = (commentId, comment ) => async (dispatch) => {
   }
 }
 export const getAllComments = (userId, deckId) => async (dispatch) => {
+  console.log(`userId: ${userId}.....deckId: ${deckId}`)
   const res = await fetch (`/api/comments/${deckId}/${userId}`, {
     method: 'GET'
   })
@@ -75,7 +76,7 @@ export const getAllComments = (userId, deckId) => async (dispatch) => {
     if (data.errors) return data.errors
   }
   else {
-    return ['An error occurred. Please try again']
+    return {'message': 'An error occured'}
   }
 }
 
