@@ -75,14 +75,14 @@ function App() {
           <ProtectedRoute path='/users/:userId' exact={true} >
             <User />
           </ProtectedRoute>
-          <ProtectedRoute path='/' exact={true} >
+          <Route path='/' exact={true} >
             <HomePage />
-          </ProtectedRoute>
+          </Route>
           <ProtectedRoute path='/comments/:id/edit' exact={true}>
             <UpdateCommentPage />
           </ProtectedRoute>
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
       </Container>
     </BrowserRouter>
   );
