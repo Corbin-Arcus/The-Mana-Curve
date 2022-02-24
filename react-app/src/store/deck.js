@@ -178,7 +178,6 @@ export const createADeck = ( user_id, deck_name, deck_format ) => async (dispatc
   if (res.ok) {
     const data = await res.json()
     dispatch(createDeck(data))
-    window.alert('Deck successfully added!')
     return data
   }
   else if (res.status < 500) {

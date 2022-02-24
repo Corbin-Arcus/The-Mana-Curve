@@ -71,7 +71,6 @@ export const addACard = (cardName) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(addCard(data))
-    window.alert('Card successfully added!')
     return data
   }
   else if (res.status < 500) {

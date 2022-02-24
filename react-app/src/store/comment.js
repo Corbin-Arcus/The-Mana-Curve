@@ -98,7 +98,6 @@ export const createAComment = (user_id, deck_id, comment, username ) => async (d
   if (res.ok) {
     const data = await res.json()
     dispatch(createComment(data))
-    window.alert('Comment successfully added!')
     return data
   }
   else if (res.status < 500) {
