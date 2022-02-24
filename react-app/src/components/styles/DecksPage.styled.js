@@ -25,5 +25,7 @@ export const DecksContainer = styled.div`
     height: 50vh;
     width: 30vw;
     border: 1px solid gray;
+    /* display: flex;
+    flex-direction: column-reverse */
   }
 `

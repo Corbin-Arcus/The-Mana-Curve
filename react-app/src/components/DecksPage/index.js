@@ -23,7 +23,7 @@ function DecksPage(){
           <th>Deck Name</th>
           <th>Deck Format</th>
         </tr>
-          {deckArr?.map(deck =>
+          {deckArr?.slice(0).reverse().map(deck =>
             <tr>
               <td><Link to={`/decks/${deck.id}`}>{deck.deck_name}</Link></td>
               <td>{deck.deck_format}</td>
