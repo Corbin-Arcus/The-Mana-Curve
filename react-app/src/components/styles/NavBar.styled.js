@@ -42,4 +42,6 @@ export const StyledNavBar = styled.nav`
     justify-content: space-evenly
   }
 
+  
+
 `
