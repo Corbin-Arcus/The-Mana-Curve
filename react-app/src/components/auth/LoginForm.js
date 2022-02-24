@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { login } from '../../store/session';
 import { LoginFormContainer } from '../styles/LoginForm.styled'
 
@@ -53,8 +53,9 @@ const LoginForm = () => {
           ))}
         </div>
         <div>
-          <h1>Login in!</h1>
+          <h1>Login!</h1>
           <label htmlFor='email'>Email</label>
+          <br />
           <input
             name='email'
             type='text'
@@ -65,6 +66,7 @@ const LoginForm = () => {
         </div>
         <div>
           <label htmlFor='password'>Password</label>
+          <br />
           <input
             name='password'
             type='password'
@@ -76,6 +78,10 @@ const LoginForm = () => {
           <button type='submit'>Login</button>
           <button onClick={demoLogin}>Login with Demo</button>
         </div>
+        <p>Not a User? <NavLink to='/sign-up' exact={true} activeClassName='active'>
+            Register
+          </NavLink>
+          </p>
       </form>
     </LoginFormContainer>
   );

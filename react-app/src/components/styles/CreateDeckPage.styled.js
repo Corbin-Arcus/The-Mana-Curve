@@ -12,9 +12,10 @@ export const CreateDecksContainer = styled.div`
     padding: 15px;
   }
 
-  h1, label{
+  h1, label, li{
     color:white;
   }
+
 
 
 `

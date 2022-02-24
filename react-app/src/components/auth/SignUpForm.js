@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { SignUpFormContainer } from '../styles/SignUpForm.styled'
 
@@ -69,6 +69,7 @@ const SignUpForm = () => {
         <div>
           <h1>Sign Up!</h1>
           <label>User Name</label>
+          <br />
           <input
             type='text'
             name='username'
@@ -78,6 +79,7 @@ const SignUpForm = () => {
         </div>
         <div>
           <label>Email</label>
+          <br />
           <input
             type='text'
             name='email'
@@ -87,6 +89,7 @@ const SignUpForm = () => {
         </div>
         <div>
           <label>Password</label>
+          <br />
           <input
             type='password'
             name='password'
@@ -96,6 +99,7 @@ const SignUpForm = () => {
         </div>
         <div>
           <label>Repeat Password</label>
+          <br />
           <input
             type='password'
             name='repeat_password'
@@ -104,6 +108,10 @@ const SignUpForm = () => {
             required={true}
           ></input>
         </div>
+        <p>Already a User? <NavLink to='/login' exact={true} activeClassName='active'>
+            Login
+          </NavLink>
+          </p>
         <button type='submit'>Sign Up</button>
       </form>
     </SignUpFormContainer>
