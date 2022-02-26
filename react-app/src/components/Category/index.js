@@ -18,7 +18,7 @@ const Category = ({cards, title, deck}) => {
       {cards?.map((card) => (
         <div className='card'>
           <Link to={`/cards/${card.id}`}><img alt={card?.card_name} src={card?.card_image}></img></Link>
-        <button onClick={() => deleteCard(card.id)}>Delete card</button>
+        <button className='delete' onClick={() => deleteCard(card.id)}>Delete card</button>
       </div>
       ))}
     </CategoryContainer>
