@@ -15,6 +15,7 @@ const Category = ({cards, title, deck}) => {
   return(
     <CategoryContainer>
       <h2>{title}</h2>
+      <h3>{cards?.length}</h3>
       {cards?.map((card) => (
         <div className='card'>
           <Link to={`/cards/${card.id}`}><img alt={card?.card_name} src={card?.card_image}></img></Link>

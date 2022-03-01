@@ -14,9 +14,9 @@ function CreateCommentPage() {
   const [errors, setErrors] = useState([])
   const [username, setUsername] = useState('')
   const session = useSelector(state => state.session);
-  const currentUser = session.user.id
+  const currentUser = session?.user?.id
   const deckArr = useSelector(state => state.deck.decks)
-  const theusername = session.user.username
+  const theusername = session?.user?.username
   const { id } = useParams()
   let deck;
   if (deckArr){
@@ -39,8 +39,8 @@ function CreateCommentPage() {
       setErrors([])
       // history.push(`/decks/${deckId}`)
        await dispatch(commentActions.createAComment(userId, id, comment, username ))
-       console.log(deckId)
        dispatch(commentActions.getAllComments(userId, id))
+       setComment('')
       }
   }
 

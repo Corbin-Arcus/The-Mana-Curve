@@ -11,7 +11,7 @@ function DecksPage(){
   const deckArr = decks.decks
 
   useEffect(() => {
-    dispatch(deckActions.getAllDecks(user.id))
+    dispatch(deckActions.getAllDecks(user?.id))
   },[dispatch])
 
 

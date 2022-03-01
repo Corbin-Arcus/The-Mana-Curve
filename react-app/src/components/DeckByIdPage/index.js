@@ -46,6 +46,7 @@ function DeckByIdPage({currentCard, setCurrentCard}) {
   return(
     <DeckByIdContainer>
       <h1>{deck?.deck_name}</h1>
+      <h3>Deck size: {deck?.cards?.length}</h3>
       <button onClick={sendId}>Delete {deck?.deck_name} </button>
       <NavLink to={`/decks/${deckId}/edit`}><button>Rename Deck</button></NavLink>
       <br />
