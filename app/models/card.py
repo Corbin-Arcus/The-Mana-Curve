@@ -18,9 +18,9 @@ class Card(db.Model):
 
   oracle_text = db.Column(db.String(500), nullable=False)
 
-  power = db.Column(db.Integer, nullable=True)
+  power = db.Column(db.String(500), nullable=True)
 
-  toughness = db.Column(db.Integer, nullable=True)
+  toughness = db.Column(db.String(500), nullable=True)
 
   colors = db.Column(db.String(500), nullable=True)
 

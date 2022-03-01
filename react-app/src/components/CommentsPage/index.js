@@ -32,7 +32,7 @@ function CommentsPage(){
   return (
     <CommentsPageContainer>
       <h1>Comments:</h1>
-      {comments?.map(comment =>
+      {comments?.slice(0).reverse().map(comment =>
         <>
           <h5>{comment?.username}</h5>
           <h2>{comment?.comment}</h2>

@@ -18,6 +18,7 @@ def create_card():
   form['csrf_token'].data = request.cookies['csrf_token']
 
 
+
   if form.validate_on_submit():
     card_name = form.data['card_name']
     card_image = form.data['card_image']
@@ -37,7 +38,6 @@ def create_card():
     #   return obj.to_dict()
 
     new_card = Card(card_name=card_name, card_image=card_image, mana_cost=mana_cost, cmc=cmc, type_line=type_line,oracle_text=oracle_text,power=power,toughness=toughness,colors=colors,color_identity=color_identity, legalities=legalities)
-
     db.session.add(new_card)
     db.session.commit()
     return new_card.to_dict()

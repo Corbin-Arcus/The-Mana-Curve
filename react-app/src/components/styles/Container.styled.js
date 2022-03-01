@@ -13,4 +13,5 @@ export const Container = styled.div`
   flex-direction:column;
   /* overflow-y: scroll; */
   overflow-x:hidden;
+  margin-bottom: 75px;
  `

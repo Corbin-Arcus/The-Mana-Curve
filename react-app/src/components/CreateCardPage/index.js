@@ -29,6 +29,7 @@ function CreateCardPage({currentCard, setCurrentCard}) {
       setErrors([])
       await dispatch(cardActions.addACard(cardName))
     }
+    setCardName('')
   }
 
 
